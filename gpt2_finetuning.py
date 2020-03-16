@@ -1,6 +1,7 @@
 import gpt_2_simple as gpt2
 import os
 import requests
+import sys
 
 def gpt2_finetuning(model_name, data_file, step):
 	if not os.path.isdir(os.path.join("models", model_name)):
@@ -46,10 +47,16 @@ def gpt2_finetuning(model_name, data_file, step):
 	gpt2.finetune(sess,
             file_name,
             model_name=model_name,
-            steps=1000)   # steps is max number of training steps
+            run_name='run'+str(step),
+            batch_size=4,
+            checkpoint_dir='checkpoint',
+            steps=step)   # steps is max number of training steps
 
 def main():
-
+	if len(sys.argv) < 4:
+		print('[usage] python gpt2_finetuning.py model_name, data_file step')
+		return None
+	gpt2_finetuning(sys.argv[1], sys.argv[2], int(sys.argv[3]))
 	
 if __name__ == '__main__':
 	main()
