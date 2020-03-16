@@ -10,8 +10,8 @@ def gpt2_finetuning(model_name, data_file, step):
 
     sess = gpt2.start_tf_sess()
     file_name = data_file
-	
-	'''
+
+    '''
    	For finetuning use this command. Following are other parameters of the finetuning function:
         sess,
         dataset,
@@ -36,8 +36,8 @@ def gpt2_finetuning(model_name, data_file, step):
         only_train_transformer_layers=False,
         optimizer='adam',
         overwrite=False
-	'''
-	gpt2.finetune(sess,
+    '''
+    gpt2.finetune(sess,
             file_name,
             model_name=model_name,
             run_name='run'+str(step),
@@ -46,10 +46,10 @@ def gpt2_finetuning(model_name, data_file, step):
             steps=step)   # steps is max number of training steps
 
 def main():
-	if len(sys.argv) < 4:
-		print('[usage] python gpt2_finetuning.py model_name, data_file step')
-		return None
-	gpt2_finetuning(sys.argv[1], sys.argv[2], int(sys.argv[3]))
+    if len(sys.argv) < 4:
+    	print('[usage] python gpt2_finetuning.py model_name, data_file step')
+    	return None
+    gpt2_finetuning(sys.argv[1], sys.argv[2], int(sys.argv[3]))
 	
 if __name__ == '__main__':
-	main()
+    main()
