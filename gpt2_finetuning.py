@@ -1,6 +1,6 @@
 import gpt_2_simple as gpt2
 import os
-import requests
+import tensorflow as tf
 import sys
 
 def gpt2_finetuning(model_name, data_file, step):
@@ -10,7 +10,7 @@ def gpt2_finetuning(model_name, data_file, step):
 
     sess = gpt2.start_tf_sess()
     file_name = data_file
-
+    tf.reset_default_graph()
     '''
    	For finetuning use this command. Following are other parameters of the finetuning function:
         sess,
