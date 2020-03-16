@@ -4,20 +4,13 @@ import requests
 import sys
 
 def gpt2_finetuning(model_name, data_file, step):
-	if not os.path.isdir(os.path.join("models", model_name)):
-		print(f"Downloading {model_name} model...")
-		gpt2.download_gpt2(model_name=model_name)   # model is saved into current directory under /models/124M/
+    if not os.path.isdir(os.path.join("models", model_name)):
+        print(f"Downloading {model_name} model...")
+        gpt2.download_gpt2(model_name=model_name)   # model is saved into current directory under /models/124M/
 
-	if not os.path.isfile(file_name):
-		url = "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt"
-		data = requests.get(url)
+    sess = gpt2.start_tf_sess()
+    file_name = data_file
 	
-		with open(file_name, 'w') as f:
-			f.write(data.text)
-    
-
-	sess = gpt2.start_tf_sess()
-
 	'''
    	For finetuning use this command. Following are other parameters of the finetuning function:
         sess,
