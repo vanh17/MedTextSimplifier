@@ -27,7 +27,6 @@ def generate(run_name, prefix_sentence, output_file):
     """
     gpt2.generate(sess,
                   run_name = run_name,
-                  destination_path = output_file,
                   batch_size = 2,
                   length = 100,
                   prefix = prefix_sentence,
@@ -35,11 +34,11 @@ def generate(run_name, prefix_sentence, output_file):
                   truncate="<|endoftext|>"
                   )
 
-def main():
-    if len(sys.argv) < 4:
-    	print('[usage] python gpt2_generate.py run_name, prefix_sentence, output_directory')
-    	return None
-    generate(sys.argv[1], sys.argv[2], sys.argv[3])
+# def main():
+#     if len(sys.argv) < 4:
+#     	print('[usage] python gpt2_generate.py run_name, prefix_sentence, output_directory')
+#     	return None
+#     generate(sys.argv[1], sys.argv[2], sys.argv[3])
 	
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()
