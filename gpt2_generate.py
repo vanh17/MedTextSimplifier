@@ -4,6 +4,7 @@ import sys
 
 def generate(run_name, prefix_sentence, output_file):
     sess = gpt2.start_tf_sess()
+    gpt2.load_gpt2(sess, run_name = run_name)
     """
     sess,
              run_name='run1',
@@ -26,7 +27,6 @@ def generate(run_name, prefix_sentence, output_file):
              include_prefix=True
     """
     gpt2.generate(sess,
-                  run_name = run_name,
                   batch_size = 2,
                   length = 100,
                   prefix = prefix_sentence,
