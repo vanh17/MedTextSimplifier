@@ -10,7 +10,7 @@ def main():
 		simple = simple.read().splitlines()
 		for i in range(len(normal)):
 			# add simple marker so that GPT know that we are converting one sentence to the others.
-			processed.write("<|startoftext|>" + normal[i].split("\t")[2] + " [SEP] " + simple[i].split("\t")[2] + " <|endoftext|>\n")
+			processed.write("<|startoftext|> " + normal[i].split("\t")[2] + " [SEP] " + simple[i].split("\t")[2] + " <|endoftext|>\n")
 
 if __name__ == '__main__':
 	main()
