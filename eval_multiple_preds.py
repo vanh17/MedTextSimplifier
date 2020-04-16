@@ -14,16 +14,22 @@ def eval(preds, labels, threshold):
 	labels = open(labels, "r").readlines()
 	for i in range(len(labels)):
 		total += 1
+		# initialize satisfactory
+		satisfactory = False
 		# spacy similarity
-		pred = nlp(preds[i].strip("\n").lower())
-		print(pred)
+		pred_list = preds[i].strip("\n").split(" ")
+		# only one word at a time
 		label = nlp(labels[i].strip("\n").lower())
-		print(label)
-		if 	pred.similarity(label) >= threshold:
-		# difflib similarity
-		# label = labels[i].strip("\n").lower()
-		# pred = preds[i].strip("\n").lower()
-		# if difflib.SequenceMatcher(None, pred, label).ratio() >= threshold:
+		for i in range(len(pred_list)):
+			pred = nlp(pred_list[i].lower()) 
+			if 	pred.similarity(label) >= threshold:
+			# difflib similarity
+			# label = labels[i].strip("\n").lower()
+			# pred = preds[i].strip("\n").lower()
+			# if difflib.SequenceMatcher(None, pred, label).ratio() >= threshold:
+				satisfactory = True
+				break
+		if satisfactory:
 			corrected += 1
 	print("Accuracy: ", corrected / total)
 
@@ -31,7 +37,7 @@ def main():
 	if len(sys.argv) != 4:
 		print("[usage]: python3 eval.py preds_file_name labels_file_name threshold")
 	else:
-		# python3 eval.py data_processing/preds/roberta/rob_context_preds.txt data_processing/data/dev_labels.txt .99
+		# python3 eval_multiple_preds.py data_processing/preds/roberta/rob_context_5preds.txt data_processing/data/next1/dev_labels.txt .99
 		eval(sys.argv[1], sys.argv[2], float(sys.argv[3]))
 
 if __name__ == '__main__':
