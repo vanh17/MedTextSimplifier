@@ -10,37 +10,31 @@ nlp = spacy.load("en_core_web_lg")
 def eval(preds, labels, threshold):
 	corrected = 0
 	total = 0
-	preds = open(preds, "r").readlines()
+	roberta_preds = open(preds+"/roberta/rob_context_preds.txt", "r").readlines()
+	bert_preds = open(preds+"/bert/bert_context_preds.txt", "r").readlines()
+	xlnet_preds = open(preds+"/xlnet/xlnet_context_preds.txt", "r").readlines()
 	labels = open(labels, "r").readlines()
-	binary_preds = []
 	for i in range(len(labels)):
 		total += 1
 		# spacy similarity
-		pred = nlp(preds[i].strip("\n").lower())
+		rob_pred = nlp(roberta_preds[i].strip("\n").lower())
+		bert_pred = nlp(bert_preds[i].strip("\n").lower())
+		xlnet_pred = nlp(xlnet_preds[i].strip("\n").lower())
 		label = nlp(labels[i].strip("\n").lower())
-		if 	pred.similarity(label) >= threshold:
+		if 	rob_pred.similarity(label) >= threshold or bert_pred.similarity(label) >= threshold or xlnet_pred.similarity(label) >= threshold:
 		# difflib similarity
 		# label = labels[i].strip("\n").lower()
 		# pred = preds[i].strip("\n").lower()
 		# if difflib.SequenceMatcher(None, pred, label).ratio() >= threshold:
 			corrected += 1
-			binary_preds.append(1)
-		else:
-			binary_preds.append(0)
 	print("Accuracy: ", corrected / total)
-	return binary_preds
 
 def main():
 	if len(sys.argv) != 4:
-		print("[usage]: python3 eval.py preds_file_name labels_file_name threshold")
+		print("[usage]: python3 eval.py preds_folder_name labels_file_name threshold")
 	else:
-		# python3 eval.py data_processing/preds/roberta/rob_context_preds.txt data_processing/data/next1/dev_labels.txt .99
-		binary_preds = eval(sys.argv[1], sys.argv[2], float(sys.argv[3]))
-		# commented this out so that I can see how roberta works April 30, 2020
-		# output = open("xlnet_next1_binary_preds.txt", "w")
-		# for pred in binary_preds:
-		# 	output.write(str(pred) + "\n")
-		# output.close()
+		# python3 ensemble_eval.py data_processing/preds data_processing/data/next1/dev_labels.txt .99
+		eval(sys.argv[1], sys.argv[2], float(sys.argv[3]))
 
 if __name__ == '__main__':
 	main()
