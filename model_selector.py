@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
     # processing train data
     train_data['labels'] = list(zip(train_data["RoBERTa"].tolist(), train_data["BERT"].tolist(), train_data["XLNet"].tolist()))
-    train_data['text'] = train_data['Textt']
+    train_data['text'] = train_data['Text']
 
     # processing test data
     test_data['labels'] = list(zip(test_data["RoBERTa"].tolist(), test_data["BERT"].tolist(), test_data["XLNet"].tolist()))
