@@ -10,7 +10,7 @@ emotions = ["RoBERTa", "BERT", "XLNet"]
 emotion_to_int = {"0": 0, "1": 1}
 
 model = MultiLabelClassificationModel('roberta', 'roberta-base', num_labels=11, 
-    args={'train_batch_size':8, 'gradient_accumulation_steps':8, 'learning_rate': 1e-5, 'num_train_epochs': 5, 'max_seq_length': 512, 'reprocess_input_data': True, 'overwrite_output_dir': True})
+    args={'train_batch_size':4, 'gradient_accumulation_steps':8, 'learning_rate': 1e-5, 'num_train_epochs': 5, 'max_seq_length': 512, 'reprocess_input_data': True, 'overwrite_output_dir': True})
 
 
 def train_and_predict(train_data: pd.DataFrame,
