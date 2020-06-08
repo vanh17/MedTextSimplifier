@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<div class="container">
+	<button type="button" class="btn">Run</button>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+	
+	const Url = 'http://127.0.0.1:5000/';
+	const data={
+		data:"I am alive"
+	}
+
+	let headers = new Headers();
+
+    headers.append('Content-Type', 'application/json');
+    headers.append('Origin','http://127.0.0.1:5000');
+
+	$('.btn').click(function(){
+		$.post(Url,
+			// mode: 'cors',
+		    // type: 'POST',  // http method
+		    // headers: headers,
+		   	data, // data to submit
+		    function (data, status) {
+		        console.log('${data} and status is ${status}')
+		    });
+		})
+
+
+</script>
+
+</head>
+</html>
