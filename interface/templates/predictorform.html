@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+ 	<title>Autocompletion for Text Simplification</title>
+ 	</head>
+   	<body>
+   	  <h2>Autocompletion for Text Simplification</h2>	
+      <form action = "http://localhost:5000/results" method = "POST">
+      	<p>Difficult Text <input type = "text" name="difficult_text">
+      	   Ongoing Text <input type = "text" name = "ongoing_text" /></p>
+        <p>Language Models:</p>
+        <input type="radio" id="ensemble" name="models" value="ensemble">
+  		  <label for="ensemble">Ensemble</label>
+        <input type="radio" id="roberta" name="models" value="roberta">
+  		  <label for="roberta">RoBERTa</label>
+  		  <input type="radio" id="bert" name="models" value="bert">
+  		  <label for="bert">BERT</label>
+  		  <input type="radio" id="gpt2" name="models" value="gpt2">
+  		  <label for="gpt2">GPT2</label>
+  		  <input type="radio" id="xlnet" name="models" value="xlnet">
+  		  <label for="xlnet">XLNet</label>
+        <p>Number of Suggestion: <input type="number" step="1" name="num_suggestion"></p><br>
+        <input type="submit" value="Submit request" />
+      </form>
+   	</body>
+</html>

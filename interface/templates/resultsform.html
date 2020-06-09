@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+ 	<head>
+ 		<title>Autocompletion for Text Simplification</title>
+ 	</head>
+ 	<body>
+ 		<h3>Difficult Text:</h3>
+ 			<div>{{ difficult }}</div>
+
+ 		<h3>Previously Typed Text:</h3>
+ 			<div>{{ typed }}</div>
+
+ 		<h3>Processing Language Model:</h3>
+ 			<div>{{ model }}</div>
+ 
+ 		<h3>Next Word Prediction:</h3>
+ 			<ol id="predictionList">
+      			{% for word_dict in predicted_words %}
+        			<li>{{ word_dict["word"].lower() }}</li>
+      			{% endfor %}
+ 			</ol>
+ 	</body>
+</html>
